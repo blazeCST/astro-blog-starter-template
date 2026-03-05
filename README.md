@@ -62,3 +62,21 @@ Check out [our documentation](https://docs.astro.build) or jump into our [Discor
 ## Credit
 
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+
+## School Admin Dashboard (Ubuntu)
+
+If you want an admin panel for managing school website content, this repository now includes a deployment scaffold:
+
+- `deploy/admin/docker-compose.yml` (Directus + PostgreSQL + Nginx)
+- `deploy/admin/.env.example` (environment variables template)
+- `deploy/admin/nginx/default.conf` (reverse proxy config)
+- `docs/admin-dashboard-ubuntu.md` (step-by-step setup guide)
+
+Quick start:
+
+```bash
+cd deploy/admin
+cp .env.example .env
+# edit .env with strong secrets and your admin domain
+docker compose --env-file .env up -d
+```
