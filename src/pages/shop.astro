@@ -1,0 +1,49 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import { products } from '../data/siteData';
+
+const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${SITE_TITLE} | IT Shop`}
+			description="Shop business-ready laptops, network hardware, security appliances, and IT accessories."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-header">
+				<p class="eyebrow">Shop</p>
+				<h1>Business-ready IT hardware</h1>
+				<p>
+					Purchase curated devices and infrastructure products that our technicians actively deploy and
+					support. Need help choosing? Our team can recommend a complete stack for your workflow.
+				</p>
+			</section>
+
+			<section class="product-grid">
+				{products.map((product) => (
+					<article class="product-card">
+						<p class="tag">{product.tag}</p>
+						<h2>{product.name}</h2>
+						<p>{product.description}</p>
+						<div class="product-meta">
+							<span class="price">{formatter.format(product.price)}</span>
+							<span class="rating">⭐ {product.rating.toFixed(1)}</span>
+						</div>
+						<p class="stock">SKU: {product.sku} · {product.stock} in stock</p>
+						<button type="button">Add to quote</button>
+					</article>
+				))}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
