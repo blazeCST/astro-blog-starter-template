@@ -1,0 +1,66 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${SITE_TITLE} | Contact`}
+			description="Contact ProTech IT Support for quotes, project consultations, and urgent technical assistance."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-header">
+				<p class="eyebrow">Contact</p>
+				<h1>Talk with an IT specialist</h1>
+				<p>
+					Tell us what you need and we will contact you with an action plan. For urgent incidents, mention
+					"Critical" in your message subject.
+				</p>
+			</section>
+
+			<section class="dashboard-grid">
+				<form class="admin-form">
+					<label>
+						Name
+						<input type="text" placeholder="Your full name" required />
+					</label>
+					<label>
+						Company
+						<input type="text" placeholder="Company name" />
+					</label>
+					<label>
+						Email
+						<input type="email" placeholder="you@company.com" required />
+					</label>
+					<label>
+						Phone
+						<input type="tel" placeholder="(555) 555-5555" />
+					</label>
+					<label>
+						Message
+						<textarea rows="6" placeholder="Describe your IT issue or project objective."></textarea>
+					</label>
+					<button type="submit">Send Request</button>
+				</form>
+
+				<aside class="data-list">
+					<h2>Office information</h2>
+					<ul>
+						<li><strong>Support Hotline</strong><span>+1 (800) 555-0199</span></li>
+						<li><strong>Email</strong><span>support@protechit.example</span></li>
+						<li><strong>Hours</strong><span>24/7 remote support</span></li>
+						<li><strong>On-site</strong><span>Mon–Sat, 7:00 AM–7:00 PM</span></li>
+					</ul>
+				</aside>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

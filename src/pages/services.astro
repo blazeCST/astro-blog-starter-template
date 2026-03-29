@@ -1,0 +1,84 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import { services } from '../data/siteData';
+
+const grouped = {
+	repair: services.filter((item) => item.category === 'repair'),
+	support: services.filter((item) => item.category === 'support'),
+	security: services.filter((item) => item.category === 'security'),
+	infrastructure: services.filter((item) => item.category === 'infrastructure'),
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${SITE_TITLE} | Services`}
+			description="Explore IT repair, managed support, cybersecurity, and infrastructure services from ProTech."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="page-header">
+				<p class="eyebrow">Services</p>
+				<h1>Comprehensive IT services for growth and stability</h1>
+				<p>
+					Our services are structured for speed, security, and measurable outcomes. Choose one-time assistance
+					or ongoing managed support.
+				</p>
+			</section>
+
+			<section>
+				<h2>Repair Services</h2>
+				<div class="card-grid">
+					{grouped.repair.map((service) => (
+						<article class="card">
+							<p class="tag">{service.category}</p>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+							<p class="meta"><span>{service.price}</span><span>{service.delivery}</span></p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section>
+				<h2>Managed Support</h2>
+				<div class="card-grid">
+					{grouped.support.map((service) => (
+						<article class="card">
+							<p class="tag">{service.category}</p>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+							<p class="meta"><span>{service.price}</span><span>{service.delivery}</span></p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section>
+				<h2>Security & Infrastructure</h2>
+				<div class="card-grid">
+					{[...grouped.security, ...grouped.infrastructure].map((service) => (
+						<article class="card">
+							<p class="tag">{service.category}</p>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+							<ul>
+								{service.highlights.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</article>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

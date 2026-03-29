@@ -3,47 +3,110 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { services, testimonials } from '../data/siteData';
+
+const highlightedServices = services.slice(0, 3);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`${SITE_TITLE} | Professional IT Support`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="landing">
+			<section class="hero">
+				<p class="eyebrow">Trusted managed IT services & device reparation</p>
+				<h1>Professional IT support for modern businesses and home offices.</h1>
+				<p>
+					We help you repair devices, secure your data, and keep your systems online with fast response
+					times. Whether you need emergency troubleshooting or a complete infrastructure refresh,
+					ProTech delivers reliable, human-first support.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="/support">Get support now</a>
+					<a class="btn btn-secondary" href="/shop">Browse IT shop</a>
+				</div>
+				<ul class="hero-stats">
+					<li><strong>15 min</strong><span>Average remote response</span></li>
+					<li><strong>98.7%</strong><span>Ticket satisfaction score</span></li>
+					<li><strong>2,400+</strong><span>Successful repairs completed</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Featured Services</h2>
+				<div class="card-grid">
+					{highlightedServices.map((service) => (
+						<article class="card">
+							<p class="tag">{service.category.toUpperCase()}</p>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+							<p class="meta">
+								<span>{service.price}</span>
+								<span>{service.delivery}</span>
+							</p>
+							<ul>
+								{service.highlights.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="why-us">
+				<h2>Why teams choose ProTech</h2>
+				<div class="why-grid">
+					<article>
+						<h3>Proactive maintenance</h3>
+						<p>
+							Our experts detect weak points before they become outages using monitoring, scheduled patching,
+							and performance optimization routines.
+						</p>
+					</article>
+					<article>
+						<h3>Security-first delivery</h3>
+						<p>
+							From endpoint hardening to access policy design, every support task follows structured security
+							best practices and clean documentation.
+						</p>
+					</article>
+					<article>
+						<h3>Scalable support model</h3>
+						<p>
+							Start with one-off repairs and grow into managed services without changing providers. We adapt
+							our workflows as your organization evolves.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section>
+				<h2>Client Testimonials</h2>
+				<div class="testimonial-grid">
+					{testimonials.map((review) => (
+						<blockquote>
+							<p>“{review.quote}”</p>
+							<footer>
+								<strong>{review.name}</strong>
+								<span>{review.company}</span>
+							</footer>
+						</blockquote>
+					))}
+				</div>
+			</section>
+
+			<section class="cta-panel">
+				<h2>Need urgent IT assistance today?</h2>
+				<p>
+					Our support engineers are ready to solve connectivity problems, workstation crashes, and security
+					incidents right now.
+				</p>
+				<a class="btn btn-primary" href="/support">Open a support request</a>
+			</section>
 		</main>
 		<Footer />
 	</body>
